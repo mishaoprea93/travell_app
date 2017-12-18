@@ -4,13 +4,13 @@ from ..login_registrationapp.models import User
 from .models import Trip
 import datetime
 from django.contrib import messages
+from django.db.models import Q
 
 def travels(request):
-    others=Trip.objects.all().exclude(user=request.session['user_id'])
     context={
         "user":User.objects.get(id=request.session['user_id']),
-        "trips":Trip.objects.filter(joiners=request.session['user_id']),
-        "others":others  
+        "trips":Trip.objects.filter(Q(joiners=request.session['user_id']) | Q(user=request.session['user_id'])),
+        "others":Trip.objects.all().exclude(Q(joiners=request.session['user_id']) | Q(user=request.session['user_id'])),
     }
     return render(request,'travel_app/travels.html',context)
 
@@ -33,8 +33,6 @@ def process_trip(request):
                 date_to=request.POST['date_to'],
                 user=user1,
             )
-        this_trip=Trip.objects.last()
-        this_trip.joiners.add(user1)
         return redirect('/travels')
 
 def join_trip(request,id):
