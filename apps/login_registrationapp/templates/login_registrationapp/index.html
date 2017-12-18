@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <h1>Welcome!</h1>
+        <p id="up_message">Please register or login below for future activities!</p>
+
+        <div>
+            <form method="post" action="/main/register_login">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="register">
+                <p>Insert your Name :<input type="text" name="name"></p>
+                <p>Insert your Username :<input type="text" name="username"></p>
+                <p>Insert your Password :<input type="password" name="password"></p>
+                <p>Re-type your Password : <input type="password" name="password_confirmation"></p>
+                <p><input type="submit" value="Register"></p>
+            </form>
+            <form method="post" action="/main/register_login">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="login">
+                <p>Insert your Username :<input type="text" name="username"></p>
+                <p>Insert your Password :<input type="password" name="password"></p>
+                <p><input type="submit" value="Login"></p>
+            </form>
+        </div>
+        <div id="flash">
+            {% if messages %} {% for message in messages %}
+            <p>{{ message }}</p> {% endfor %} {% endif %}
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+<style>
+    #wrapper {
+        width: 500px;
+        height: 800px;
+        margin: 30px auto;
+        text-align: left;
+        background-color: rgb(175, 175, 175);
+        border: 5px solid black;
+    }
+    
+    h1 {
+        color: aquamarine;
+        margin-bottom: 50px;
+        margin-left: 80px;
+        margin-top: 30px;
+    }
+    
+    form {
+        width: 100%;
+        border: 1px solid black;
+    }
+    
+    p {
+        margin-left: 100px;
+        width: 300px;
+    }
+    
+    #up_message {
+        color: blue;
+        margin-left: 50px;
+        font-size: 12pt;
+        width: 80%;
+    }
+    
+    #flash {
+        color: red
+    }
+</style>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Trip</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <a href="/travels">HOME</a> <a id="aa" href="/main/logout">LOG OUT</a>
+        <h1>Add a Trip:</h1>
+        <br>
+        <br>
+        <form action="/travels/process_trip" method="POST">
+            {% csrf_token %}
+            <p>Destination:<input type="text" name="destination"></p>
+            <p>Description:<input type="text" name="description"></p>
+            <p>Starting from:<input type="date" name="date_from"></p>
+            <p>To:<input type="date" name="date_to"></p>
+            <br>
+            <p><input type="submit" value="Add Trip"></p>
+
+        </form>
+        <br>
+        <br>
+        <div id="flash">
+            {% if messages %} {% for message in messages %}
+            <p>{{ message }}</p> {% endfor %} {% endif %}
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+<style>
+    #wrapper {
+        width: 500px;
+        height: 800px;
+        margin: 30px auto;
+        text-align: left;
+        background-color: rgb(175, 175, 175);
+        border: 5px solid black;
+    }
+    
+    h1 {
+        color: aquamarine;
+        margin-bottom: 50px;
+        margin-left: 80px;
+        margin-top: 30px;
+    }
+    
+    form {
+        width: 100%;
+        border: 1px solid black;
+    }
+    
+    p {
+        margin-left: 100px;
+        width: 300px;
+    }
+    
+    #up_message {
+        color: blue;
+        margin-left: 50px;
+        font-size: 12pt;
+        width: 80%;
+    }
+    
+    #flash {
+        color: red
+    }
+</style>

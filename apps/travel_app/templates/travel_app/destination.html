@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Destination</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="head">
+            <a href="/travels">HOME</a> <a id="aa" href="/main/logout">LOG OUT</a>
+        </div>
+        <div id="top">
+            <h3>{{this_trips.destination}}</h3>
+            <br>
+            <p>Planned by: {{this_trips.user.name}}</p>
+            <p>Description: {{this_trips.description}}</p>
+            <p>Travel date from: {{this_trips.date_from}}</p>
+            <p>Travel date to: {{this_trips.date_to}}</p>
+
+        </div>
+        <div id="bottom">
+            <h3>Other users joining the trip:</h3>
+            <br> {% for userr in userrs %}
+            <p>{{userr.name}}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<style>
+    #wrapper {
+        width: 700px;
+        height: 800px;
+        margin: 30px auto;
+        text-align: left;
+        background-color: rgb(175, 175, 175);
+        border: 5px solid black;
+    }
+    
+    #head {
+        height: 10%;
+        text-align: right;
+        line-height: 70px;
+    }
+    
+    #top {
+        height: 30%;
+        width: 70%;
+        margin-left: 100px;
+    }
+    
+    #bottom {
+        height: 30%;
+        width: 70%;
+        margin-left: 100px
+    }
+</style>
